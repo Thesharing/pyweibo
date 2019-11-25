@@ -19,21 +19,21 @@ pip install pyweibo
 
 2. 在 应用信息 -> 基本信息 获取`App Key`和`App Secret`；
 
-3. 在 应用信息 -> 高级信息 -> OAuth2.0 授权设置 中设置`授权回调页`：
+3. 在 应用信息 -> 高级信息 -> OAuth2.0 授权设置 中设置`授权回调页`为：
 
-    https://api.weibo.com/oauth2/default.html
+> https://api.weibo.com/oauth2/default.html
 
 ## 使用说明
 
 ### OAuth2 鉴权
 
-基本用法：
+基本用法
 
 ```python
 from pyweibo import Auth
 auth = Auth()
 ```
-在运行时需要手动输入`App Key`和`App Token`：
+在运行时，需要手动输入`App Key`和`App Token`：
 
 ```bash
 App Key: <Your App Key>
@@ -45,10 +45,10 @@ App Secret: <Your App Secret>
 将地址栏的地址复制粘贴到终端中，即可产生Token。
 
 ```bash
-Input the url or the token: <The URL or token>
+Input the url or the token: <The URL or the token>
 ```
 
-最终Token会被保存在`./token.json`文件中方便日后使用。
+最终，Token会被保存在`./token.json`文件中以便日后使用。
 
 除此以外还可以修改：
 
@@ -58,7 +58,7 @@ Input the url or the token: <The URL or token>
 
 ## API Client
 
-基本用法：
+基本用法
 
 ```python
 from pyweibo import Auth, Client
@@ -72,23 +72,45 @@ client = Client()
 data = client.statuses.home_timeline.get(access_token=token)
 ```
 
-所有API可以通过[官方文档](https://open.weibo.com/wiki/%E5%BE%AE%E5%8D%9AAPI)查询得到。
+* 所有API方法及其参数可以在[官方文档](https://open.weibo.com/wiki/%E5%BE%AE%E5%8D%9AAPI)查询。
 
-可以通过 `client.api_name_1.api_name_2.get(param1=value1, param2=value2)`这种方式访问微博API，其中最后一个方法调用必须是`get`或者`post`，根据文档决定。
+* 可以以类属性的形式访问微博API，其中最后一个方法调用必须是 `get` 或者 `post` ，根据文档决定。
 
-所有API参数以方法参数的形式传递即可。 
+```python
+client.api_name_1.api_name_2.get(param1=value1, param2=value2)
+```
 
-还可以通过Dict Index的方式调用API：`client[api_name_1][api_name_2].get(param1=value1, param2=value2)`。
+* 所有API参数以方法参数的形式传递即可。 
 
-方法返回值类型为`TextDict`，所有值都会被封装为可以直接访问的属性：
+* 还可以通过 Dict Index 的方式调用API：
+
+```python
+client[api_name_1][api_name_2].get(param1=value1, param2=value2)
+```
+
+* 方法返回值类型为`TextDict`，所有值都会被封装为可以直接访问的属性：
 
 ```python
 user = data.statuses[0].user
 ```
 
-通过`pic`参数可以上传图片：
+* 通过`pic`参数可以上传图片：
 
 ```python
 with open('image.png', 'rb') as f:
     client.statuses.upload.post(status='Image', pic=f)
 ```
+
+## Contribute
+
+项目地址：[Thesharing/pyweibo](https://github.com/Thesharing/pyweibo)
+
+在使用过程中遇到问题可以[提出Issue](https://github.com/Thesharing/pyweibo/issues/new)。
+
+## Reference
+
+[michaelliao/sinaweibopy](https://github.com/michaelliao/sinaweibopy)
+
+[lxyu/weibo](https://github.com/lxyu/weibo)
+
+[Thesharing/spider-util](https://github.com/thesharing/spider-util)

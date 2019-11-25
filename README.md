@@ -7,7 +7,7 @@
 
 Python SDK for Weibo API.
 
-[中文文档](./README-zh.md)
+[中文文档](https://github.com/Thesharing/pyweibo/blob/master/README-zh.md)
 
 ## Installation
 
@@ -23,13 +23,13 @@ pip install pyweibo
 
 3. Set `Redirect URI` in 应用信息 -> 高级信息 -> OAuth2.0授权设置 as:
 
-    https://api.weibo.com/oauth2/default.html
+> https://api.weibo.com/oauth2/default.html
 
 ## Usage
 
 ### Authentication
 
-Basic usage:
+Basic usage
 
 ```python
 from pyweibo import Auth
@@ -44,15 +44,15 @@ App Secret: <Your App Secret>
 
 Next the web browser will automatically open the redirect uri.
 
-Copy the uri to the console and the token will be generated:
+Copy the uri to the console, and the token will be generated:
 
 ```bash
 Input the url or the token: <The URL or token>
 ```
 
-Finally the token will also be stored in `./token.json`.
+Finally, the token will also be stored in `./token.json`.
 
-As for advance usages, you can specify:
+As for advanced usages, you can specify:
 
 * The way to read app key and secret from the local file: `LocalFileReader('./app.json')`
 
@@ -60,7 +60,7 @@ As for advance usages, you can specify:
 
 ## API Client
 
-Basic usage:
+Basic usage
 
 ```python
 from pyweibo import Auth, Client
@@ -74,21 +74,43 @@ client = Client()
 data = client.statuses.home_timeline.get(access_token=token)
 ```
 
-The APIs can be referred from [Official Doc](https://open.weibo.com/wiki/%E5%BE%AE%E5%8D%9AAPI).
+* The APIs and their parameters can be referred from [official docs](https://open.weibo.com/wiki/%E5%BE%AE%E5%8D%9AAPI).
 
-You can access the api via `client.api_name_1.api_name_2.get(param1=value1, param2=value2)`, where the last method call must be `get` or `post`. 
+* You can access the api call like class attributes, where the last method call must be `get` or `post`. 
 
-Also you can use dict index like `client[api_name_1][api_name_2].get(param1=value1, param2=value2)`.
+```python
+client.api_name_1.api_name_2.get(param1=value1, param2=value2)
+```
 
-The return value is a `TextDict`, where you can access the attributes directly like:
+* Also you can use dict index like:
+ 
+ ```python
+client[api_name_1][api_name_2].get(param1=value1, param2=value2)
+ ```
+
+* The return value is a `TextDict`, where you can access the attributes directly like:
 
 ```python
 user = data.statuses[0].user
 ```
 
-Also you can upload the picture like this:
+* Also you can upload the picture with the parameter `pic`:
 
 ```python
 with open('image.png', 'rb') as f:
     client.statuses.upload.post(status='Image', pic=f)
 ```
+
+## Contribute
+
+Project：[Thesharing/pyweibo](https://github.com/Thesharing/pyweibo)
+
+Establish [new issue](https://github.com/Thesharing/pyweibo/issues/new) if there is any question or advice.
+
+## Reference
+
+[michaelliao/sinaweibopy](https://github.com/michaelliao/sinaweibopy)
+
+[lxyu/weibo](https://github.com/lxyu/weibo)
+
+[Thesharing/spider-util](https://github.com/thesharing/spider-util)

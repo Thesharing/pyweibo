@@ -1,1 +1,1 @@
-spiderutil >= 0.1.5
+spiderutil >= 0.1.6

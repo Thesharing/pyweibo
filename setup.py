@@ -7,7 +7,7 @@ with open(path.join(this_directory, 'README.md'), encoding='utf-8') as f:
 
 setup(
     name='pyweibo',
-    version='0.1.0',
+    version='0.1.1',
     packages=['pyweibo'],
     url='https://github.com/Thesharing/pyweibo',
     license='MIT',
@@ -32,5 +32,5 @@ setup(
         'Topic :: Software Development',
     ],
 
-    python_requires='>=3.4.0, <4',
+    python_requires='>=3.4, <4',
 )
