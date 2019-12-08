@@ -98,6 +98,16 @@ user = data.statuses[0].user
 
 ```python
 with open('image.png', 'rb') as f:
+    client.statuses.upload_pic.post(pic=f)
+```
+
+* 对于 `2/statuses/upload` 等地址为 https://upload.api.weibo.com/2/statuses/upload.json 的API，用 `UploadClient` 代替 `Client`:
+
+```python
+from pyweibo import UploadClient
+
+client = UploadClient()
+with open('image.png', 'rb') as f:
     client.statuses.upload.post(status='Image', pic=f)
 ```
 

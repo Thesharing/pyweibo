@@ -26,3 +26,13 @@ class Client(API):
             files = {"pic": kwargs.pop("pic")}
             r = super(Client, self).post(url, data=kwargs, files=files)
         return TextDict.load(r.text)
+
+
+class UploadClient(Client):
+    """
+    Upload API Client
+    """
+
+    def __init__(self, proxies=None, timeout=None, retry=None):
+        API.__init__(self, url='https://upload.api.weibo.com/2/', proxies=proxies,
+                     timeout=timeout, retry=retry)

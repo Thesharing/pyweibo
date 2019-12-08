@@ -98,6 +98,16 @@ user = data.statuses[0].user
 
 ```python
 with open('image.png', 'rb') as f:
+    client.statuses.upload_pic.post(pic=f)
+```
+
+* For api like `2/statuses/upload` of which the url is https://upload.api.weibo.com/2/statuses/upload.json, use `UploadClient` instead of `Client`:
+
+```python
+from pyweibo import UploadClient
+
+client = UploadClient()
+with open('image.png', 'rb') as f:
     client.statuses.upload.post(status='Image', pic=f)
 ```
 
